@@ -66,7 +66,7 @@ export const GET = async (req: Request) => {
       },
     };
 
-    return Response.json(payload, {
+    return new Response(JSON.stringify(payload), {
       headers: ACTIONS_CORS_HEADERS,
     });
   } catch (err) {
@@ -141,7 +141,7 @@ export const POST = async (req: Request) => {
       // signers: [],
     });
 
-    return Response.json(payload, {
+  return new Response(JSON.stringify(payload), {
       headers: ACTIONS_CORS_HEADERS,
     });
   } catch (err) {
