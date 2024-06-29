@@ -12,7 +12,7 @@ const Pay = () => {
   const [token, setToken] = useState('SOL');
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const recipient = new PublicKey("93bk5ApDHZ1fedg7FKsqtHUaqd9NvyCoijEEawuu1Cjm")
+  const recipient = new PublicKey("4iG4s2F3eSByCkMvfsGhrvzXNoPrDFUJuA7Crtuf3Pvn")
   const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'); // USDC Mint Address
 
   const handlePayment = async () => {

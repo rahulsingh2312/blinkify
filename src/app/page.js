@@ -10,11 +10,11 @@ const Pay = () => {
   const [amount, setAmount] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
   const [token, setToken] = useState('SOL');
-  const recipient = new PublicKey("93bk5ApDHZ1fedg7FKsqtHUaqd9NvyCoijEEawuu1Cjm");
+  const recipient = new PublicKey("4iG4s2F3eSByCkMvfsGhrvzXNoPrDFUJuA7Crtuf3Pvn");
   const usdcMintAddress = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'); // USDC Mint Address
 
   const handlePayment = async () => {
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
     const reference = new Keypair().publicKey;
     
     let url;

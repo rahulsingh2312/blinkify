@@ -1,5 +1,5 @@
 /**
- * Solana Actions Example
+ * Solana Writer , writing javascript
  */
 
 import {
