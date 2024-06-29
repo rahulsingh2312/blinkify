@@ -42,8 +42,8 @@ import {
         links: {
           actions: [
             {
-              label: "Buy with 1 SOL",
-              href: `${baseHref}?to=4iG4s2F3eSByCkMvfsGhrvzXNoPrDFUJuA7Crtuf3Pvn&amount=1`,
+              label: "Buy with 0.4 SOL",
+              href: `${baseHref}?to=4iG4s2F3eSByCkMvfsGhrvzXNoPrDFUJuA7Crtuf3Pvn&amount=0.4`,
             },
           ],
         },
