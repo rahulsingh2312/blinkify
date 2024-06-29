@@ -51,7 +51,7 @@ const Pay = () => {
       });
     }
 
-    const qrCode = createQR(url);
+    const qrCode = createQR(url, 256  ); 
     setQrcode(qrCode);
     const element = document.getElementById('qr-code');
     element.innerHTML = '';
@@ -120,7 +120,7 @@ const Pay = () => {
           )}
         </div>
       </div>
-<p className="text-sm max-sm:text-xs text-gray-400 mt-4 mx-auto text-center">
+<p className="text-sm flex items-center justify-center max-sm:text-xs text-gray-400 mt-4 md:mt-10 mx-auto text-center">
 <input
 className='text-white  bgb py-3 mx-5 px-5 rounded-md'
         type="text"
@@ -129,11 +129,11 @@ className='text-white  bgb py-3 mx-5 px-5 rounded-md'
         onChange={(e) => setAmount(e.target.value)}
       />
        
- <button className='text-white  bgb py-3 mx-5 px-5 rounded-md' onClick={handlePayment}>Generate Link</button>
+ <button className='text-white   bgb py-3  mx-5 px-5 rounded-md' onClick={handlePayment}>Pay Now</button>
         </p> 
      
      
-        <div className="flex flex-col md:items-center mt-10">
+        <div className="flex flex-col items-center mt-10">
         <div className="" id="qr-code">
           {/* Your QR code component or image */}
           
