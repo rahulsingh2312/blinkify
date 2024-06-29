@@ -30,6 +30,7 @@
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.2.1",
     "sanctum-lst-list": "^0.2.13",
     "touch-cli": "^0.0.1"
   },

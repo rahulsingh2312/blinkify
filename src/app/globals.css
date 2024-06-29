@@ -8,6 +8,21 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.yellowtext{
+  background: linear-gradient(269deg, #e8e6d5 29.96%, #724fe3 93.86%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+.bgb{
+  background: linear-gradient(269deg, #2f2f2b 29.96%, #504289 93.86%);
+ 
+}
+.bgc{
+  background: linear-gradient(269deg, #2f2f2b 29.96%, #d667c2 93.86%);
+ 
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
