@@ -34,8 +34,8 @@ export const GET = async (req: Request) => {
 
     const payload: ActionGetResponse = {
       title: "Actions Example - Transfer Native SOL",
-      icon: new URL("/solana_devs.jpg", requestUrl.origin).toString(),
-      description: "Transfer SOL to another Solana wallet",
+      icon: new URL("/pfp.jpeg", requestUrl.origin).toString(),
+      description: "Transfer SOL to Rahul ✨",
       label: "Transfer", // this value will be ignored since `links.actions` exists
       links: {
         actions: [
