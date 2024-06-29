@@ -1,0 +1,8 @@
+{
+    "rules": [
+      {
+        "pathPattern": "/transfer",
+        "apiPath": "https://pay.rahulol.me/api/transfer"
+      }
+    ]
+  }

@@ -33,7 +33,7 @@ export const GET = async (req: Request) => {
     ).toString();
 
     const payload: ActionGetResponse = {
-      title: "Actions Example - Transfer Native SOL",
+      title: "Transfer SOL to the Greatest Dev of all time 🚀",
       icon: new URL("/pfp.jpeg", requestUrl.origin).toString(),
       description: "Transfer SOL to Rahul ✨",
       label: "Transfer", // this value will be ignored since `links.actions` exists
@@ -103,7 +103,7 @@ export const POST = async (req: Request) => {
     }
 
     const connection = new Connection(
-      process.env.SOLANA_RPC! || clusterApiUrl("devnet"),
+      process.env.SOLANA_RPC! || clusterApiUrl("mainnet-beta"),
     );
 
     // ensure the receiving account will be rent exempt
