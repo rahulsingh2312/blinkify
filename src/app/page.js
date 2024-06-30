@@ -96,7 +96,7 @@ const Pay = () => {
         <div className='w-full flex items-center justify-center mt-10'>
         <div className="relative">
           <div
-            className="w-40 text-white bgc py-3 mx-5 px-5 rounded-md leading-relaxed text-xl text-center cursor-pointer"
+            className="w-40 text-white bgc py-3 mx-5 px-5 rounded-md leading-relaxed text-xl text-left cursor-pointer"
             onClick={toggleDropdown}
           >
             {token === 'SOL' ? 'SOL' : 'USDC'}
@@ -120,9 +120,9 @@ const Pay = () => {
           )}
         </div>
       </div>
-<p className="text-sm flex items-center justify-center max-sm:text-xs text-gray-400 mt-4 md:mt-10 mx-auto text-center">
+<p className="text-sm flex items-center justify-center flex-col gap-4 lg:gap-8 max-sm:text-xs text-gray-400 mt-4 md:mt-10 mx-auto text-center">
 <input
-className='text-white  bgb py-3 mx-5 px-5 rounded-md'
+className='text-white outline-none  bgb py-3 mx-5 px-5 rounded-md'
         type="text"
         placeholder="Enter amount"
         value={amount}
