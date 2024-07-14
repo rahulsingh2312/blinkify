@@ -84,7 +84,6 @@ export const GET = async (req: Request) => {
 // THIS WILL ENSURE CORS WORKS FOR BLINKS
 export const OPTIONS = async () => {
   return new Response(null, {
-    status: 204,
     headers: { ...ACTIONS_CORS_HEADERS, ...corsHeaders },
   });
 };
