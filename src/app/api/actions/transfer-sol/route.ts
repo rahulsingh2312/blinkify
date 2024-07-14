@@ -1,6 +1,7 @@
 /**
  * Solana Actions Example
  */
+import { NextRequest, NextResponse } from 'next/server';
 
 import {
   ActionPostResponse,
@@ -66,7 +67,7 @@ export const GET = async (req: Request) => {
       },
     };
 
-    return Response.json(payload, {
+     return new NextResponse(JSON.stringify(payload), {
       headers: ACTIONS_CORS_HEADERS,
     });
   } catch (err) {
@@ -141,7 +142,7 @@ export const POST = async (req: Request) => {
       // signers: [],
     });
 
-    return Response.json(payload, {
+     return new NextResponse(JSON.stringify(payload), {
       headers: ACTIONS_CORS_HEADERS,
     });
   } catch (err) {
