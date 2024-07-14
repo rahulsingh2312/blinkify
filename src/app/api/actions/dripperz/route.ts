@@ -110,7 +110,7 @@ export const POST = async (req: Request) => {
       });
     }
 
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
 
     const transaction = new Transaction();
     transaction.feePayer = accountPublicKey;
