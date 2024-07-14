@@ -45,6 +45,7 @@ const sendEmail = async (data: any) => {
       <p><strong>Address:</strong> ${data.address}</p>
       <p><strong>Size:</strong> ${data.size}</p>
       <p><strong>Contact:</strong> ${data.contact}</p>
+      <p><strong>Wallet:</strong> ${data.wallet}</p>
     `,
   };
 
@@ -64,7 +65,7 @@ export const GET = async (req: Request) => {
     const { toPubkey } = validatedQueryParams(requestUrl);
 
     const baseHref = new URL(
-      `/api/actions/transfer-sol?to=${toPubkey.toBase58()}`,
+      `/api/actions/blinkify?to=${toPubkey.toBase58()}`,
       requestUrl.origin,
     ).toString();
 
@@ -117,22 +118,7 @@ export const POST = async (req: Request) => {
     const requestUrl = new URL(req.url);
     const {  toPubkey , Address , Contact, Size } = validatedQueryParams(requestUrl);
 
-    // Sending email with the received data
-  // Send the email with the received data
-  const emailData = {
-    from_name: 'Blinkify Blink ShopBuilder',
-    to_email: 'rahulsinghhh2312@gmail.com', // Replace with the actual recipient email
-    to_name: 'gm dawg',
-    address: Address,
-    size: Size,
-    contact: Contact,
-    message: `This is a mail from Blinkify:
-    \nAddress: ${Address}
-    \nSize: ${Size}
-    \nContact: ${Contact}`,
-  };
-
-  await sendEmail(emailData);
+ 
 
     console.log(Address,Size,Contact)
     const body: ActionPostRequest = await req.json();
@@ -178,7 +164,24 @@ export const POST = async (req: Request) => {
       await connection.getLatestBlockhash()
     ).blockhash;
     console.log('Transaction Parameters:', body);
+   // Sending email with the received data
+  // Send the email with the received data
+  const emailData = {
+    from_name: 'Blinkify Blink ShopBuilder',
+    to_email: 'rahulsinghhh2312@gmail.com', // Replace with the actual recipient email
+    to_name: 'gm dawg',
+    address: Address,
+    size: Size,
+    contact: Contact,
+    wallet:body.account,
+    message: `This is a mail from Blinkify:
+    \nAddress: ${Address}
+    \nSize: ${Size}
+    \nContact: ${Contact}
+    \nWallet: ${body.account}`,
+  };
 
+  await sendEmail(emailData);
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction,
