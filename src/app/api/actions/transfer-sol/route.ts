@@ -33,36 +33,28 @@ export const GET = async (req: Request) => {
       requestUrl.origin,
     ).toString();
 
+
+
+
+
     const payload: ActionGetResponse = {
-      title: "Actions Example - Transfer Native SOL",
-      icon: new URL("/solana_devs.jpg", requestUrl.origin).toString(),
-      description: "Transfer SOL to another Solana wallet",
-      label: "Transfer", // this value will be ignored since `links.actions` exists
+      title: "Buy the SuperteamDE merch 👕",
+      icon: new URL("/degif.gif", requestUrl.origin).toString(),
+      description: "Built with @BlinkifyShop",
+      label: "Buy T-Shirt",
       links: {
         actions: [
           {
-            label: "Send 1 SOL", // button text
-            href: `${baseHref}&amount=${"1"}`,
-          },
-          {
-            label: "Send 5 SOL", // button text
-            href: `${baseHref}&amount=${"5"}`,
-          },
-          {
-            label: "Send 10 SOL", // button text
-            href: `${baseHref}&amount=${"10"}`,
-          },
-          {
-            label: "Send SOL", // button text
-            href: `${baseHref}&amount={amount}`, // this href will have a text input
+            label: "Buy with 0.083 SOL",
+            href: `${baseHref}&amount=${"0.1"}`, // this href will have a text input
             parameters: [
-              {
-                name: "amount", // parameter name in the `href` above
-                label: "Enter the amount of SOL to send", // placeholder of the text input
-                required: true,
-              },
+
+              { name: "Contact", label: "Enter Your Email Address or Contact Info", required: true },
+              { name: "Address", label: "Enter Your Address With Pincode", required: true },
+              { name: "Size", label: "Choose Between S,M,L,XL", required: true },
             ],
           },
+         
         ],
       },
     };
@@ -88,7 +80,7 @@ export const OPTIONS = GET;
 export const POST = async (req: Request) => {
   try {
     const requestUrl = new URL(req.url);
-    const { amount, toPubkey } = validatedQueryParams(requestUrl);
+    const {  toPubkey } = validatedQueryParams(requestUrl);
 
     const body: ActionPostRequest = await req.json();
 
@@ -104,14 +96,14 @@ export const POST = async (req: Request) => {
     }
 
     const connection = new Connection(
-      process.env.SOLANA_RPC! || clusterApiUrl("mainnet-beta"),
+       clusterApiUrl("devnet"),
     );
 
     // ensure the receiving account will be rent exempt
     const minimumBalance = await connection.getMinimumBalanceForRentExemption(
       0, // note: simple accounts that just store native SOL have `0` bytes of data
     );
-    if (amount * LAMPORTS_PER_SOL < minimumBalance) {
+    if (0.1 * LAMPORTS_PER_SOL < minimumBalance) {
       throw `account may not be rent exempt: ${toPubkey.toBase58()}`;
     }
 
@@ -122,7 +114,7 @@ export const POST = async (req: Request) => {
       SystemProgram.transfer({
         fromPubkey: account,
         toPubkey: toPubkey,
-        lamports: amount * LAMPORTS_PER_SOL,
+        lamports: 0.1 * LAMPORTS_PER_SOL,
       }),
     );
 
@@ -132,11 +124,12 @@ export const POST = async (req: Request) => {
     transaction.recentBlockhash = (
       await connection.getLatestBlockhash()
     ).blockhash;
+    console.log('Transaction Parameters:', body);
 
     const payload: ActionPostResponse = await createPostResponse({
       fields: {
         transaction,
-        message: `Send ${amount} SOL to ${toPubkey.toBase58()}`,
+        message: `Send ${0.1} SOL to ${toPubkey.toBase58()}`,
       },
       // note: no additional signers are needed
       // signers: [],
@@ -169,9 +162,9 @@ function validatedQueryParams(requestUrl: URL) {
   }
 
   try {
-    if (requestUrl.searchParams.get("amount")) {
-      amount = parseFloat(requestUrl.searchParams.get("amount")!);
-    }
+    
+      amount = 0.1;
+    
 
     if (amount <= 0) throw "amount is too small";
   } catch (err) {
