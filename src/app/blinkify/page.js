@@ -129,7 +129,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
                 id="imageUrl"
                 placeholder="https://rahulol.me/static/media/kcode2.ccfd3878b3f3278c4fa6.jpg"
                 {...register("imageUrl")}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 text-black border rounded"
               />
               {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
             </div>
@@ -141,7 +141,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
                 placeholder="rahulsinghhh2312@gmail.com"
                 id="emailTo"
                 {...register("emailTo")}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded text-black"
               />
               {errors.emailTo && <p className="text-red-500">{errors.emailTo.message}</p>}
             </div>
