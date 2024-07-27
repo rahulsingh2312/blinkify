@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
 .yellowtext{
   background: linear-gradient(269deg, #e8e6d5 29.96%, #724fe3 93.86%);
@@ -23,23 +18,13 @@
   background: linear-gradient(269deg, #2f2f2b 29.96%, #d667c2 93.86%);
  
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.copybox{
+  background: linear-gradient(180deg, #5B5656 0%, #3C3737 64%, #2C2626 98%, #080000 98.01%);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+
+
+
 
 @layer utilities {
   .text-balance {
@@ -50,65 +35,12 @@ body {
 
 
 body {
+  background: black;
   font-family: Arial, sans-serif;
-  background-color: #f7f9fc;
   display: flex;
+  color: #e8e6d5;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-}
-
-.container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 90%;
-  max-width: 600px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-bottom: 8px;
-  color: #555;
-}
-
-input {
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.result {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #e9ecef;
-  border-radius: 4px;
-  word-wrap: break-word;
 }

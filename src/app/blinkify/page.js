@@ -1,102 +1,167 @@
-'use client'
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const formSchema = z.object({
+  toPubkey: z.string().min(1, { message: "Public Key is required." }),
+  amount: z.string().min(1, { message: "Amount is required." }),
+  title: z.string().min(1, { message: "Title is required." }),
+  description: z.string().min(1, { message: "Description is required." }),
+  imageUrl: z.string().url({ message: "Invalid URL." }),
+  emailTo: z.string().email({ message: "Invalid email." }),
+});
 
 const App = () => {
-  const [toPubkey, setToPubkey] = useState('');
-  const [amount, setAmount] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [emailTo, setEmailTo] = useState('');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
+  const [copyStatus, setCopyStatus] = useState("Copy");
+  const [iframe, setIframe] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({
+    resolver: zodResolver(formSchema),
+  });
 
-    const encodedToPubkey = encodeURIComponent(toPubkey);
-    const encodedAmount = encodeURIComponent(amount);
-    const encodedTitle = encodeURIComponent(title);
-    const encodedDescription = encodeURIComponent(description);
-    const encodedImageUrl = encodeURIComponent(imageUrl);
-    const encodedEmailTo = encodeURIComponent(emailTo);
+  const watchedValues = useWatch({ control });
 
-    const baseUrl = "http://localhost:3000/api/actions/blinkify";
-    const queryString = `?to=${encodedToPubkey}&amount=${encodedAmount}&title=${encodedTitle}&description=${encodedDescription}&imageUrl=${encodedImageUrl}&emailTo=${encodedEmailTo}`;
-    const fullUrl = `${baseUrl}${queryString}`;
-    
-    const encodedFullUrl = encodeURIComponent(fullUrl);
-    const generatedUrl = `https://dial.to/?action=solana-action%3A${encodedFullUrl}`;
-    
-    setUrl(generatedUrl);
+  useEffect(() => {
+    const { toPubkey, amount, title, description, imageUrl, emailTo } = watchedValues;
+if(toPubkey, amount, title, description, imageUrl, emailTo){
+  setIframe(true);
+}
+    if (true) {
+      const encodedToPubkey = encodeURIComponent(toPubkey);
+      const encodedAmount = encodeURIComponent(amount);
+      const encodedTitle = encodeURIComponent(title);
+      const encodedDescription = encodeURIComponent(description);
+      const encodedImageUrl = encodeURIComponent(imageUrl);
+      const encodedEmailTo = encodeURIComponent(emailTo);
+
+      const baseUrl = "https://pay.rahulol.me/api/actions/blinkify";
+      const queryString = `?to=${encodedToPubkey}&amount=${encodedAmount}&title=${encodedTitle}&description=${encodedDescription}&imageUrl=${encodedImageUrl}&emailTo=${encodedEmailTo}`;
+      const fullUrl = `${baseUrl}${queryString}`;
+
+      const encodedFullUrl = encodeURIComponent(fullUrl);
+      const generatedUrl = `https://dial.to/?action=solana-action%3A${encodedFullUrl}`;
+
+      setUrl(generatedUrl);
+      setCopyStatus("Copy");
+
+    }
+  }, [watchedValues]);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(url);
+    setCopyStatus("Copied");
+    setTimeout(() => setCopyStatus("Copy"), 2000);
   };
 
   return (
-    <div className="container text-black">
-      <h1>Create Solana Action URL</h1>
-      <form onSubmit={handleSubmit} className="form">
-        <label htmlFor="toPubkey">To PublicKey:</label>
-        <input
-          type="text"
-          id="toPubkey"
-          value={toPubkey}
-          onChange={(e) => setToPubkey(e.target.value)}
-          required
-        />
-        
-        <label htmlFor="amount">Amount (SOL):</label>
-        <input
-          type="number"
-          id="amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          step="0.01"
-          required
-        />
-        
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        
-        <label htmlFor="description">Description:</label>
-        <input
-          type="text"
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        
-        <label htmlFor="imageUrl">Image URL:</label>
-        <input
-          type="url"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          required
-        />
-        
-        <label htmlFor="emailTo">Email To:</label>
-        <input
-          type="email"
-          id="emailTo"
-          value={emailTo}
-          onChange={(e) => setEmailTo(e.target.value)}
-          required
-        />
-        
-        <button type="submit">Generate URL</button>
-      </form>
-      {url && (
-        <div className="result">
-          <p>Generated URL:</p>
-          <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+    <div className="container mx-auto p-4 bg-black text-white">
+      <h1 className="text-4xl mt-40 flex justify-center yellowtext text-center items-center mb-10">Create Solana Blink For Your Ecommerce Store!</h1>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/3 border border-solid rounded-md border-white p-10">
+          <form onSubmit={handleSubmit()} className="space-y-4">
+            <div>
+              <label htmlFor="toPubkey" className="block mb-1">Your Solana Wallet Addr. (where you want the payment):</label>
+              <input
+                type="text"
+                id="toPubkey"
+                {...register("toPubkey")}
+                className="w-full p-2 border rounded"
+              />
+              {errors.toPubkey && <p className="text-red-500">{errors.toPubkey.message}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="amount" className="block mb-1">Amount (SOL):</label>
+              <input
+                type="number"
+                id="amount"
+                {...register("amount")}
+                className="w-full text-black p-2 border rounded"
+                step="0.01"
+              />
+              {errors.amount && <p className="text-red-500">{errors.amount.message}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="title" className="block mb-1">Title:</label>
+              <input
+                type="text"
+                id="title"
+                {...register("title")}
+                className="w-full p-2 border rounded text-black"
+              />
+              {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="description" className="block mb-1">Description:</label>
+              <input
+                type="text"
+                id="description"
+                {...register("description")}
+                className="w-full p-2 border rounded text-black"
+              />
+              {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="imageUrl" className="block mb-1">Image URL:</label>
+              <input
+                type="url"
+                id="imageUrl"
+                {...register("imageUrl")}
+                className="w-full p-2 border rounded"
+              />
+              {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="emailTo" className="block mb-1">Email To:</label>
+              <input
+                type="email"
+                id="emailTo"
+                {...register("emailTo")}
+                className="w-full p-2 border rounded"
+              />
+              {errors.emailTo && <p className="text-red-500">{errors.emailTo.message}</p>}
+            </div>
+
+            <button type="submit"                   className=" px-4 py-2 rounded-md bg-black  border border-solid border-gray-200 text-white "
+>Generate URL</button>
+          </form>
         </div>
-      )}
+
+        {true && (
+          <div className="md:w-1/2 ml-32 md:pl-4 mt-4 md:mt-0">
+            <div className="mb-4">
+              <p className="text-lg">Generated URL:</p>
+              <div className="p-2 border rounded copybox text-white break-words">
+                <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+                <br/>     
+                <button
+                  onClick={copyToClipboard}
+                  className="m-2 px-4 py-2 rounded-md bg-black text-white"
+                >
+                  {copyStatus}
+                </button>
+              </div>
+            </div>
+            {iframe && 
+            <div className="mt-4">
+              <iframe src={url} className="w-full h-[400px]" />
+            </div>}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
