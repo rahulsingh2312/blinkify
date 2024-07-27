@@ -32,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     const { toPubkey, amount, title, description, imageUrl, emailTo } = watchedValues;
-if(toPubkey, amount, title, description, imageUrl, emailTo){
+if( imageUrl){
   setIframe(true);
 }
     if (true) {
@@ -73,6 +73,17 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/3 border border-solid rounded-md border-white p-10">
           <form onSubmit={handleSubmit()} className="space-y-4">
+          <div>
+              <label htmlFor="imageUrl" className="block mb-1">Image URL:</label>
+              <input
+                type="url"
+                id="imageUrl"
+                placeholder="https://rahulol.me/static/media/kcode2.ccfd3878b3f3278c4fa6.jpg"
+                {...register("imageUrl")}
+                className="w-full p-2 text-black border rounded"
+              />
+              {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
+            </div>
             <div>
               <label htmlFor="toPubkey" className="block mb-1">Your Solana Wallet Addr. (where you want the payment):</label>
               <input
@@ -122,7 +133,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               {errors.description && <p className="text-red-500">{errors.description.message}</p>}
             </div>
 
-            <div>
+            {/* <div>
               <label htmlFor="imageUrl" className="block mb-1">Image URL:</label>
               <input
                 type="url"
@@ -132,7 +143,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
                 className="w-full p-2 text-black border rounded"
               />
               {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
-            </div>
+            </div> */}
 
             <div>
               <label htmlFor="emailTo" className="block mb-1">Email To:</label>
