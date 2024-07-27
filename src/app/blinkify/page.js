@@ -62,6 +62,11 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
     setTimeout(() => setCopyStatus("Copy"), 2000);
   };
 
+  const shareOnTwitter = () => {
+    const tweetUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=Check%20out%20this!`;
+    window.open(tweetUrl, "_blank");
+  };
+
   return (
     <div className="container mx-auto p-4 bg-black text-white">
       <h1 className="text-4xl mt-40 flex justify-center yellowtext text-center items-center mb-10">Create Solana Blink For Your Ecommerce Store!</h1>
@@ -73,6 +78,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <input
                 type="text"
                 id="toPubkey"
+                placeholder="4iG4s2F3eSByCkMvfsGhrvzXNoPrDFUJuA7Crtuf3Pvn"
                 {...register("toPubkey")}
                 className="w-full p-2 border rounded"
               />
@@ -84,6 +90,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <input
                 type="number"
                 id="amount"
+                placeholder="1"
                 {...register("amount")}
                 className="w-full text-black p-2 border rounded"
                 step="0.01"
@@ -95,6 +102,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <label htmlFor="title" className="block mb-1">Title:</label>
               <input
                 type="text"
+                placeholder="Superteam Germany Merch"
                 id="title"
                 {...register("title")}
                 className="w-full p-2 border rounded text-black"
@@ -107,6 +115,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <input
                 type="text"
                 id="description"
+                placeholder="Superteam Limited Edition Cap"
                 {...register("description")}
                 className="w-full p-2 border rounded text-black"
               />
@@ -118,6 +127,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <input
                 type="url"
                 id="imageUrl"
+                placeholder="https://rahulol.me/static/media/kcode2.ccfd3878b3f3278c4fa6.jpg"
                 {...register("imageUrl")}
                 className="w-full p-2 border rounded"
               />
@@ -128,6 +138,7 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
               <label htmlFor="emailTo" className="block mb-1">Email To:</label>
               <input
                 type="email"
+                placeholder="rahulsinghhh2312@gmail.com"
                 id="emailTo"
                 {...register("emailTo")}
                 className="w-full p-2 border rounded"
@@ -152,6 +163,12 @@ if(toPubkey, amount, title, description, imageUrl, emailTo){
                   className="m-2 px-4 py-2 rounded-md bg-black text-white"
                 >
                   {copyStatus}
+                </button>
+                <button
+                  onClick={shareOnTwitter}
+                  className="m-2 px-4 py-2 rounded-md bg-black text-white"
+                >
+                  Share on X
                 </button>
               </div>
             </div>
