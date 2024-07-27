@@ -72,7 +72,7 @@ if( imageUrl){
       <h1 className="text-4xl mt-40 flex justify-center yellowtext text-center items-center mb-10">Create Solana Blink For Your Ecommerce Store!</h1>
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/3 border border-solid rounded-md border-white p-10">
-          <form onSubmit={handleSubmit()} className="space-y-4">
+          <form className="space-y-4">
           <div>
               <label htmlFor="imageUrl" className="block mb-1">Image URL:</label>
               <input
@@ -157,8 +157,8 @@ if( imageUrl){
               {errors.emailTo && <p className="text-red-500">{errors.emailTo.message}</p>}
             </div>
 
-            <button type="submit"                   className=" px-4 py-2 rounded-md bg-black  border border-solid border-gray-200 text-white "
->Generate URL</button>
+            <div                    className=" px-4 py-2 w-36 rounded-md bg-black  border border-solid border-gray-200 text-white "
+>Generate URL</div>
           </form>
         </div>
 

@@ -124,9 +124,17 @@ export const POST = async (req: Request) => {
       });
     }
 
-    const connection = new Connection(
-      clusterApiUrl("mainnet-beta"),
-    );
+
+    // Your Helius RPC URL
+const heliusRpcUrl = process.env.NEXT_PUBLIC_RPC;
+
+// Your Helius WebSocket URL
+
+// Create a new connection using the Helius RPC URL
+const connection = new Connection(heliusRpcUrl, 'confirmed');
+    // const connection = new Connection(
+    //   clusterApiUrl("mainnet-beta"),
+    // );
 
     // ensure the receiving account will be rent exempt
     const minimumBalance = await connection.getMinimumBalanceForRentExemption(
