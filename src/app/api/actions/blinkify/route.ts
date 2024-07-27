@@ -125,7 +125,7 @@ export const POST = async (req: Request) => {
     }
 
     const connection = new Connection(
-      clusterApiUrl("devnet"),
+      clusterApiUrl("mainnet-beta"),
     );
 
     // ensure the receiving account will be rent exempt
